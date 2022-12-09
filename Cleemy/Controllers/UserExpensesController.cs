@@ -17,14 +17,16 @@ namespace Cleemy.Controllers
             _userExpenseService= userExpenseService;
         }
 
+        [Route("GetUserExpensesList")]
         [HttpPost]
         public Task<ActionResult<IEnumerable<UserExpenseViewModel>>> GetUserExpensesList(int userId, UserExpenseViewModelSortType sortType) 
         {
             return _userExpenseService.GetUserExpensesList(userId, sortType);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> PutExpenseAsync(ExpenseViewModel expense)
+        [Route("AddExpense")]
+        [HttpPost]
+        public async Task<IActionResult> AddExpense(ExpenseViewModel expense)
         {
             IEnumerable<string> expenseViewModelErrors = _userExpenseService.GetExpenseViewModelErrors(expense);
             if(expenseViewModelErrors.Any())
