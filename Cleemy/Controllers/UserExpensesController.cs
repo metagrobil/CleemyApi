@@ -17,6 +17,12 @@ namespace Cleemy.Controllers
             _userExpenseService= userExpenseService;
         }
 
+        /// <summary>
+        /// Get all expenses registered for a given user
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="sortType">type of sorting</param>
+        /// <returns>Expenses list</returns>
         [Route("GetUserExpensesList")]
         [HttpPost]
         public Task<ActionResult<IEnumerable<UserExpenseViewModel>>> GetUserExpensesList(int userId, UserExpenseViewModelSortType sortType) 
@@ -24,6 +30,11 @@ namespace Cleemy.Controllers
             return _userExpenseService.GetUserExpensesList(userId, sortType);
         }
 
+        /// <summary>
+        /// Add a new expense
+        /// </summary>
+        /// <param name="expense">Expense details</param>
+        /// <returns>Http status and message</returns>
         [Route("AddExpense")]
         [HttpPost]
         public async Task<IActionResult> AddExpense(ExpenseViewModel expense)
