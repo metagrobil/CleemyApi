@@ -1,5 +1,6 @@
 ﻿using Cleemy.Entities;
 using Cleemy.Models;
+using Cleemy.Ressources;
 using Cleemy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,17 +37,17 @@ namespace Cleemy.Services.Object
         {
             if (expense.Date.Date >= DateTime.Now.AddDays(1).Date)
             {
-                yield return "The given date is above today's date";
+                yield return Messages.DateAboveToday;
             }
 
             if (expense.Date.Date < DateTime.Now.AddMonths(-3).Date)
             {
-                yield return "The given date cannot be older than 3 months";
+                yield return Messages.DateThreeMonthOld;
             }
 
             if (string.IsNullOrEmpty(expense.Commentary))
             {
-                yield return "Commentary field must be filled";
+                yield return Messages.EmptyCommentary;
             }
         }
 

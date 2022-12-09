@@ -1,4 +1,5 @@
-﻿using Cleemy.Services;
+﻿using Cleemy.Ressources;
+using Cleemy.Services;
 using Cleemy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,13 +36,13 @@ namespace Cleemy.Controllers
             {
                 if(await _userExpenseService.IsExpenseAlreadyExists(expense))
                 {
-                    return BadRequest("Expense already exists");
+                    return BadRequest(Messages.ExpenseAlredyExists);
                 }
                 await _userExpenseService.InsertExpense(expense);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateException)
             {
-                return BadRequest("data error");
+                return BadRequest(Messages.DataError);
             }
 
             return Ok();
