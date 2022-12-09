@@ -84,6 +84,24 @@ namespace CleemyTest
         }
 
         [Fact]
+        public void GivenA3MonthDate_ShouldReturnEmptyList()
+        {
+            // Arrange
+            var expense = new ExpenseViewModel()
+            {
+                Date = DateTime.Now.AddMonths(-3),
+                Commentary = "com",
+                Amount = 0,
+            };
+
+            // Act
+            IEnumerable<string> result = _userExpenseService.GetExpenseViewModelErrors(expense);
+
+            // Assert
+            Assert.Empty(result);
+        }
+
+        [Fact]
         public void GivenAnEmptyCommentary_ShouldReturnAnError()
         {
             // Arrange
