@@ -1,5 +1,4 @@
-﻿using Cleemy.Entities;
-using Cleemy.ViewModels;
+﻿using Cleemy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cleemy.Services
